@@ -2,7 +2,7 @@
 #define SINGLE_VARIABLE_KALMAN_FILTER
 
 typedef struct {
-  float measurementError;
+  float measurementUncertainty;
   float estimateError;
   float processNoise;
   float lastEstimate;
