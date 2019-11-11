@@ -10,11 +10,9 @@ void SV_PopulateKalmanFilter(SV_KalmanFilter *kalmanFilter, const float measurem
 float SV_UpdateEstimate(SV_KalmanFilter *kalmanFilter, const float measurement) {
   float kalmanGain = 0;
   float currentEstimate = 0;
-  float measurementError = 0;
-
 
   kalmanGain = kalmanFilter->estimateError / (kalmanFilter->estimateError + kalmanFilter->measurementUncertainty);
-  currentEstimate = kalmanFilter->lastEstimate + kalmanGain * (measurement - kalmanGain->lastEstimate);
+  currentEstimate = kalmanFilter->lastEstimate + kalmanGain * (measurement - kalmanFilter->lastEstimate);
 
   if (kalmanFilter->lastEstimate > currentEstimate) {
     kalmanFilter->estimateError = (1.0 - kalmanGain) * kalmanFilter->estimateError + (kalmanFilter->lastEstimate - currentEstimate) * kalmanFilter->processNoise;
